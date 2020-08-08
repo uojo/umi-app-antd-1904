@@ -5,6 +5,7 @@ import Memo01 from './memo01';
 import Memo02 from './memo02';
 import Effect01 from './effect01';
 import Reducer01 from './reducer01';
+import Reducer02 from './reducer02';
 import State01 from './state01';
 import State02 from './state02';
 
@@ -15,7 +16,7 @@ const Comp2 = () => <div>Comp2</div>;
 export default () => (
   <>
     {/* <State01 /> */}
-    <State02 />
+    {/* <State02 /> */}
     {/* <Ref01 /> */}
     {/* <Ref02 /> */}
     {/* <Form01 /> */}
@@ -24,5 +25,6 @@ export default () => (
     {/* <Memo02 /> */}
     {/* <Effect01 /> */}
     {/* <Reducer01 /> */}
+    <Reducer02 />
   </>
 );
