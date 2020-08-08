@@ -1,0 +1,249 @@
+.bd(@color) {
+  border: 1px solid @color;
+  padding: 4px 10px;
+}
+@color1: #ccc;
+.bc(@color) {
+  border-color: @color;
+}
+.bg(@color) {
+  background-color: @color;
+}
+
+.box1 {
+  font-size: 12px;
+  line-height: 14px;
+  div {
+    .bd(#ccc);
+  }
+  .column {
+    div + div {
+      margin-top: 4px;
+    }
+  }
+
+  .body {
+    :nth-child(2) {
+      // margin-top: 3px;
+      // .bg(red);
+    }
+    .title {
+    }
+    .list {
+      .item {
+      }
+    }
+    // 特别
+    .ps {
+      .bd(red);
+      &:first-child {
+        // .bg(green);
+      }
+      &:last-child {
+        // .bg(green);
+      }
+      &:first-of-type {
+        // .bg(green);
+      }
+      &:last-of-type {
+        .bg(green);
+      }
+      &:only-child {
+        // .bg(green);
+      }
+      &:only-of-type {
+        // .bg(green);
+      }
+    }
+    // 扩展类
+    &.nthbox1 {
+      .list {
+        // 基数
+        :nth-child(odd) {
+          // .bg(yellow);
+        }
+        // 基数
+        :nth-child(2n + 1) {
+          // .bg(yellow);
+        }
+        // 选择具体第几个
+        :nth-child(1) {
+          // .bg(yellow);
+        }
+        // 前5个元素
+        :nth-child(-n + 5) {
+          // .bg(yellow);
+        }
+        // 后5个元素
+        :nth-child(n + 6) {
+          .bg(yellow);
+        }
+      }
+    }
+    &.flex10 {
+      .list {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+    &.flex1 {
+      .list {
+        display: flex;
+        justify-content: space-around;
+        & > div {
+          flex-grow: 1;
+          flex-shrink: 0;
+          // box-sizing: border-box;
+          // margin-right: 10px;
+        }
+      }
+    }
+    &.flex2 {
+      .list {
+        display: flex;
+        justify-content: space-between;
+        // flex-direction: column;
+      }
+    }
+    &.flex3 {
+      .list {
+        height: 50px;
+        display: flex;
+        // justify-content: space-between;
+      }
+    }
+    &.flex4 {
+      .list {
+        height: 100px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-content: center;
+        & > div {
+          flex-grow: 0;
+          flex-shrink: 0;
+          &:nth-child(1) {
+            flex-basis: 100px;
+          }
+        }
+      }
+    }
+    &.flex5 {
+      .list {
+        box-sizing: content-box;
+        height: 102px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-content: space-between;
+        & > div {
+          box-sizing: border-box;
+          height: 50px;
+          flex-grow: 0;
+          flex-shrink: 0;
+          &:nth-child(1) {
+            flex-basis: 100px;
+          }
+        }
+      }
+    }
+  }
+  // .bd; // mixins
+  // 直接子节点
+  // > div {
+  //   .bd;
+  // }
+  // 临近之后的兄弟节点
+  // div + div {
+  //   .bd;
+  // }
+  // 与上类同，前面有div的div
+  // div ~ div {
+  //   .bd;
+  // }
+  // 有 title 属性
+  // [title] {
+  //   .bd;
+  // }
+  // 元素的首字母
+  // :first-letter {
+  //   color: red;
+  // }
+  // div:first-line {
+  //   .bd;
+  // }
+  // :first-child {
+  //   .bd;
+  // }
+  // 首个父元素的某个标签（:），PS:头两个子元素
+  :first-of-type {
+    // .bd;
+    // border-color: #ccc;
+    // background-color: #ccc;
+  }
+  :first-child {
+    // .bg(red);
+  }
+  :last-child {
+    // .bg(blue);
+  }
+}
+
+.box2 {
+  background-color: @color1;
+}
+
+// 兼容
+.cbox1 {
+  background: #999;
+  // height: 100px;
+  height: calc(100px + constant(safe-area-inset-bottom));
+  height: calc(100px + env(safe-area-inset-bottom));
+  width: 100%;
+  overflow: hidden;
+}
+
+// 说明
+.remark {
+  font-size: 12px;
+  line-height: 14px;
+  padding-left: 20px;
+  list-style-type: upper-alpha;
+  li {
+    padding-bottom: 4px;
+  }
+  b {
+    .bg(yellow);
+    padding: 0 3px;
+  }
+}
+
+// 其它
+.textBox1 {
+  width: 100px;
+  border: solid 1px;
+  //
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.textBox2 {
+  width: 100px;
+  border: solid 1px;
+  //
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  /* autoprefixer: off */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.textBox3 {
+  width: 128px;
+  border: solid 1px;
+  // white-space 属性，控制空白字符的显示，以及控制是否换行。
+  // word-break 属性： keep-all 以（单词）空格为准，换行。break-all 单词到边界就换行。
+  word-break: break-all;
+  // 只有当单词一整行显示不下才会拆分换行
+  word-wrap: break-word;
+}
