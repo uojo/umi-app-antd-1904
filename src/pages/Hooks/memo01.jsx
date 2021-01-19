@@ -26,6 +26,7 @@ import utils from './utils';
 
 // 子组件，useMemo
 const Child1 = ({ pval1, pval2 }) => {
+  console.log('TCL: Child1 todo');
   const [val1, val1Set] = useState(0);
 
   const getPval2C1 = val => {
@@ -64,9 +65,9 @@ const Child3 = ({ name, func1, func2, obj1 = {}, obj2 = {}, obj3 = {} }) => {
     <div>
       <b>Child3:</b>
       <ul>
-        <li>name:{name}</li>
-        <li onClick={func1}>obj1.a:{obj1.a}</li>
-        <li onClick={func2}>obj2.b:{obj2.b}</li>
+        {/* <li>name:{name}</li> */}
+        {/* <li onClick={func1}>obj1.a:{obj1.a}</li> */}
+        {/* <li onClick={func2}>obj2.b:{obj2.b}</li> */}
         <li>obj3.c:{obj3.c}</li>
       </ul>
     </div>
@@ -80,6 +81,11 @@ const Main = () => {
   const [val1, val1Set] = useState(1);
   const [val2, val2Set] = useState(2);
   const [obj1, obj1Set] = useState({ a: 1 });
+  useEffect(() => {
+    setTimeout(() => {
+      obj1Set({ a: 2 });
+    }, 10);
+  }, []);
   useEffect(() => {});
 
   const handlefunc2 = val => {
@@ -92,6 +98,7 @@ const Main = () => {
       <Button
         size="small"
         onClick={() => {
+          // val1Set(1);
           val1Set(val1 + 1);
         }}
       >
@@ -106,7 +113,7 @@ const Main = () => {
       >
         val2Set ({val2})
       </Button>
-      {/* <Child1 pval1={val1} pval2={val2} /> */}
+      <Child1 pval1={val1} pval2={val2} />
       {/* 只要当前组件更新，Child2 内部就会执行 */}
       {/* <Child2 /> */}
       {/* 相反 */}
@@ -115,17 +122,18 @@ const Main = () => {
       {/* <Child3 name={val1} /> */}
       {/* 如 props 的值不变时，不会引发内部执行，然而，当传入的是函数时，依旧触发 */}
       <Child3Memo
-        name={val1}
-        // 传入的函数时，会不断的触发子组件内执行
-        func1={useCallback(val => console.info(val), [])}
-        // 同上
-        // func2={handlefunc2}
-        // 直接赋值对象变量，除非对象变化，不会引发子组件内执行
-        obj1={obj1}
-        // 相反
-        // obj2={{ b: 2 }}
-        //
-        obj3={useMemo(() => ({ c: 3 }), [val1])}
+        // ^ 浅比较
+        // ^ name={val1}
+        // 被 useCallback 缓存的函数，除非变更不然不会触发子组件重载
+        // ^ func1={useCallback(val => console.info(val), [])}
+        // 由于父组件重载时，传入的函数总是重新定义。所以父组件重载就会引发子组件重载
+        // ~ func2={handlefunc2}
+        // ^ 与传入函数同理，传入的是引用，引用发生变更就会引发子组件重载
+        // obj1={obj1}
+        // ~ 传入对象，是在每次父组件重载时重新声明的，所以父组件重载就变
+        obj2={{ b: 2 }}
+        // ^ 传入的是缓存的值，值不变，子组件不重载
+        // obj3={useMemo(() => ({ c: 3 }), [val1])}
       />
     </div>
   );

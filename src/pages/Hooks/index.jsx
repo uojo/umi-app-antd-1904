@@ -21,10 +21,10 @@ export default () => (
     {/* <Ref02 /> */}
     {/* <Form01 /> */}
     {/* <Form02 /> */}
-    {/* <Memo01 /> */}
+    <Memo01 />
     {/* <Memo02 /> */}
     {/* <Effect01 /> */}
     {/* <Reducer01 /> */}
-    <Reducer02 />
+    {/* <Reducer02 /> */}
   </>
 );

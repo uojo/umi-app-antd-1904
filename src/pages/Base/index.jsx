@@ -7,6 +7,7 @@ import Proptypes1 from './Proptypes1';
 import State1 from './State1';
 // 样式示例集合，包括：flex、伪类选择器
 import Style1 from './Style1';
+import BFC from './BFC';
 // 组件传入组件的各种方式
 import Children1 from './Children1';
 // 判断组件是否需要更新
@@ -22,6 +23,8 @@ export default () => (
 
     {/* <Update1 /> */}
 
-    <Style1 className="style1Comp" />
+    {/* <Style1 className="style1Comp" /> */}
+
+    <BFC />
   </div>
 );
