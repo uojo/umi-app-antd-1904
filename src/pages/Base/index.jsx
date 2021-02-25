@@ -23,8 +23,8 @@ export default () => (
 
     {/* <Update1 /> */}
 
-    {/* <Style1 className="style1Comp" /> */}
+    <Style1 className="style1Comp" />
 
-    <BFC />
+    {/* <BFC /> */}
   </div>
 );

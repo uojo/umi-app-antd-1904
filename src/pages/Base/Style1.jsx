@@ -14,7 +14,7 @@ class Main extends React.Component {
         name: 'flex，项目分配剩余空间',
         classname: [styles.row, styles.flex1],
         layout: 'row',
-        children: new Array(6).fill('').map((e, i) => ({ content: `${e}` })),
+        children: new Array(2).fill('').map((e, i) => ({ content: `${e}` })),
       },
       {
         name: 'flex，两端对齐，项目间距等分',
@@ -101,10 +101,36 @@ class Main extends React.Component {
     showJson.forEach(e => {
       setArrMain(e.children);
     });
-    console.log('TCL: Main -> render -> showJson', showJson);
+    // console.log('TCL: Main -> render -> showJson', showJson);
 
     return (
       <>
+        <h2>Flex-复杂结构，行内溢出文本显示…</h2>
+        <div className={styles.tbox1Wrap}>
+          <div className={styles.tbox1}>
+            <div className={styles.lbox1}>
+              <div className={styles.lbox11}>左1</div>
+              <div className={styles.lbox12}>
+                <div className={styles.left}>
+                  <div className={styles.long1}>
+                    左2-1-长文本长文本长文本长文本长文本长文本长文本长文本
+                  </div>
+                </div>
+                <div className={styles.right}>
+                  <div className={styles.text1}>左2-2</div>
+                </div>
+              </div>
+              <div className={styles.lbox13}>
+                <div className={styles.long1}>
+                  左3-长文本长文本长文本长文本长文本长文本长文本长文本长文
+                </div>
+              </div>
+            </div>
+            <div className={styles.rbox1}>右1</div>
+          </div>
+        </div>
+
+        <h2>文本溢出-单行、多行</h2>
         <div>
           <div className={styles.textBox1}>
             单行长文本长文本长文本长文本长文本长文本长文本长文本
@@ -112,12 +138,15 @@ class Main extends React.Component {
           <div className={styles.textBox2}>
             多行长文本长文本长文本长文本长文本长文本长文本长文本
           </div>
+
+          <h2>单词换行</h2>
           <div className={styles.textBox3}>
             Hi&nbsp;&nbsp;, This is a incomprehensibilities long word. <br />
             你好&nbsp;&nbsp;， 这 是一个不可思议的长单词
           </div>
         </div>
 
+        <h2>Flex 全属性示例、伪类选择器示例</h2>
         <div className={styles.box1}>
           {showJson.map((x, i) => (
             <div key={i} className={cls(styles.body, x.classname)}>

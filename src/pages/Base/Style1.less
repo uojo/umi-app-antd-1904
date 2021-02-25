@@ -1,3 +1,8 @@
+.ellipsis() {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 .bd(@color) {
   border: 1px solid @color;
   padding: 4px 10px;
@@ -8,6 +13,10 @@
 }
 .bg(@color) {
   background-color: @color;
+}
+
+h2 {
+  margin: 10px 0;
 }
 
 .box1 {
@@ -246,4 +255,48 @@
   word-break: break-all;
   // 只有当单词一整行显示不下才会拆分换行
   word-wrap: break-word;
+}
+
+.tbox1Wrap {
+  width: 300px;
+  overflow: hidden;
+}
+.tbox1 {
+  display: flex;
+  width: 100%;
+  background-color: #999;
+  & > .lbox1 {
+    background-color: #777;
+    flex: 1;
+    min-width: 0;
+    .long1 {
+      .ellipsis();
+    }
+
+    & > .lbox11 {
+    }
+
+    & > .lbox12 {
+      display: flex;
+      justify-content: space-between;
+      & > .left {
+        width: 0;
+        flex-grow: 1;
+      }
+      & > .right {
+        width: 200px;
+      }
+    }
+    & > .lbox13 {
+      min-width: 0;
+      flex: 1;
+      & > .long1 {
+        // width: 100%;
+      }
+    }
+  }
+  & > .rbox1 {
+    background-color: #888;
+    width: 80px;
+  }
 }
