@@ -105,7 +105,7 @@ class Main extends React.Component {
 
     return (
       <>
-        <h2>Flex-复杂结构，行内溢出文本显示…</h2>
+        <h2>Flex-复杂结构，行内溢出文本显示… <a href="https://www.html.cn/archives/10319">为什么</a></h2>
         <div className={styles.tbox1Wrap}>
           <div className={styles.tbox1}>
             <div className={styles.lbox1}>
@@ -222,7 +222,7 @@ class Main extends React.Component {
           <li>display:table-cell 属性的常用标签：td、th</li>
           <li>display:block 块级元素的特点在与独占一行</li>
         </ul>
-      </>
+      </a>
     );
   }
 }
