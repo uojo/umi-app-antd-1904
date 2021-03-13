@@ -77,6 +77,12 @@ export default {
           component: './Antd',
         },
         {
+          path: '/es-module',
+          name: 'ESModule',
+          icon: 'smile',
+          component: './ESModule',
+        },
+        {
           path: 'https://github.com/umijs/umi-blocks/tree/master/ant-design-pro',
           name: 'more-blocks',
           icon: 'block',
