@@ -2,6 +2,7 @@
 import { primaryColor } from '../src/defaultSettings';
 
 export default {
+  publicPath: './',
   plugins: [
     [
       'umi-plugin-react',
